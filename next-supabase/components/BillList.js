@@ -19,14 +19,14 @@ export default function BillList({ user }) {
     else setBills(bills);
   };
   const addBill = async (billText) => {
-    let bill = billText.trim();
-    if (bill.length) {
-      let { data: bill, error } = await supabase
+    let billName = billText.trim();
+    if (billName.length) {
+      let { data: singleBill, error } = await supabase
         .from("bills")
-        .insert({ bill, user_id: user.id })
+        .insert({ billName, user_id: user.id })
         .single();
       if (error) setError(error.message);
-      else setbills([...bills, bill]);
+      else setBills([...bills, singleBill]);
     }
   };
 
@@ -109,7 +109,7 @@ const Bill = ({ bill, onDelete }) => {
       <div className="flex items-center px-4 py-4 sm:px-6">
         <div className="flex items-center flex-1 min-w-0">
           <div className="text-sm font-medium leading-5 truncate">
-            {bill.task}
+            {bill.billName}
           </div>
         </div>
         <div>

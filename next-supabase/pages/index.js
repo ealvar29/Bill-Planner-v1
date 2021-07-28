@@ -1,6 +1,6 @@
 import { supabase } from "../lib/initSupabase";
 import { Auth } from "@supabase/ui";
-import TodoList from "../components/TodoList";
+import TodoList from "../components/BillList";
 
 export default function IndexPage() {
   const { user } = Auth.useUser();
