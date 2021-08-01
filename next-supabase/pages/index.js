@@ -8,12 +8,13 @@ export default function IndexPage() {
   return (
     <div className="w-full h-full bg-gray-300">
       {!user ? (
-        <div className="flex items-center justify-center w-full h-full p-4">
+        <div className="grid items-center justify-center w-full h-full p-4">
           <Auth
             supabaseClient={supabase}
             providers={["google", "github"]}
             socialLayout="horizontal"
             socialButtonSize="xlarge"
+            className=""
           />
         </div>
       ) : (

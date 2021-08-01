@@ -5,6 +5,7 @@ export default function BillList({ user }) {
   const [bills, setBills] = useState([]);
   const [newBillName, setNewBillName] = useState("");
   const [errorText, setError] = useState("");
+  const [cost, setCost] = useState("0");
 
   useEffect(() => {
     fetchBills();
@@ -18,16 +19,24 @@ export default function BillList({ user }) {
     if (error) console.log("error", error);
     else setBills(bills);
   };
-  const addBill = async (billText) => {
-    let billName = billText.trim();
-    if (billName.length) {
-      let { data: singleBill, error } = await supabase
-        .from("bills")
-        .insert({ billName, user_id: user.id })
-        .single();
-      if (error) setError(error.message);
-      else setBills([...bills, singleBill]);
-    }
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    if (newBillName === "") return;
+    supabase
+      .from("bills")
+      .insert({
+        billName: newBillName,
+        cost: cost,
+        user_id: supabase.auth.user().id,
+      })
+      .single()
+      .then(({ data, error }) => {
+        console.log(data, error);
+        if (!error) {
+          setBills((prevTodos) => [data, ...prevTodos]);
+        }
+      });
   };
 
   const deleteBill = async (id) => {
@@ -46,20 +55,24 @@ export default function BillList({ user }) {
         <input
           className="w-full p-2 rounded"
           type="text"
-          placeholder="Add Monthly Bill!"
-          value={newBillName}
+          placeholder="Add Monthly Bill"
+          value={newBillName || ""}
           onChange={(e) => {
             setError("");
             setNewBillName(e.target.value);
           }}
         />
-        <button
-          className="btn-black"
-          onClick={() => {
-            addBill(newBillName);
-            setNewBillName("");
+        <input
+          className="w-full p-2 rounded"
+          type="text"
+          placeholder="Add Amount"
+          value={cost || 0}
+          onChange={(e) => {
+            setError("");
+            setCost(e.target.value);
           }}
-        >
+        />
+        <button className="btn-black" onClick={onSubmit}>
           Add
         </button>
       </div>
@@ -110,6 +123,11 @@ const Bill = ({ bill, onDelete }) => {
         <div className="flex items-center flex-1 min-w-0">
           <div className="text-sm font-medium leading-5 truncate">
             {bill.billName}
+          </div>
+        </div>
+        <div className="flex items-center flex-1 min-w-0">
+          <div className="text-sm font-medium leading-5 truncate">
+            {bill.cost}
           </div>
         </div>
         <div>
