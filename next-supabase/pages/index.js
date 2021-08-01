@@ -6,7 +6,7 @@ export default function IndexPage() {
   const { user } = Auth.useUser();
 
   return (
-    <div className="w-full h-full bg-gray-300">
+    <div className="w-full h-full shadow-2xl bg-gradient-to-br from-green-400 to-blue-400">
       {!user ? (
         <div className="grid items-center justify-center w-full h-full p-4">
           <Auth
