@@ -38,15 +38,21 @@ export default function BillList({ user }) {
       <Form />
       {!!errorText && <Alert text={errorText} />}
       <div className="overflow-hidden bg-white rounded-md shadow">
-        <table class="table-fixed border-separate">
+        <table class="table-fixed border-collapse">
           <thead>
-            <tr>
-              <th>Bill Name</th>
-              <th>Bill Type</th>
-              <th>Cost</th>
-              <th>Due Date</th>
-              <th>Paid for the month?</th>
-              <th>Delete</th>
+            <tr className="">
+              <th className="w-1/4 border border-black rounded-md">
+                Bill Name
+              </th>
+              <th className="w-1/4 border border-black rounded-md">
+                Bill Type
+              </th>
+              <th className="w-1/4 border border-black rounded-md">Cost</th>
+              <th className="w-1/4 border border-black rounded-md">Due Date</th>
+              <th className="w-1/4 border border-black rounded-md">
+                Paid for the month?
+              </th>
+              <th className="w-1/4 border border-black rounded-md">Delete</th>
             </tr>
           </thead>
           <tbody>

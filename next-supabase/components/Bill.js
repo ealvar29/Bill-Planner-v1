@@ -22,11 +22,18 @@ export default function Bill({ bill, onDelete }) {
   console.log(bill);
   return (
     <tr>
-      <td>{bill.billName}</td>
-      <td>{bill.bill_type}</td>
-      <td>{bill.cost}</td>
-      <td> {bill.due_date}</td>
-      <td>
+      <td className="w-1/4 p-2 text-center border border-black">
+        {bill.billName}
+      </td>
+      <td className="w-1/4 p-2 text-center border border-black">
+        {bill.bill_type}
+      </td>
+      <td className="w-1/4 p-2 text-center border border-black">{bill.cost}</td>
+      <td className="w-1/4 p-2 text-center border border-black">
+        {" "}
+        {bill.due_date}
+      </td>
+      <td className="w-1/4 p-2 text-center border border-black">
         {" "}
         <input
           className="cursor-pointer"
@@ -35,7 +42,7 @@ export default function Bill({ bill, onDelete }) {
           checked={isCompleted ? true : ""}
         />
       </td>
-      <td>
+      <td className="w-1/4 p-2 text-center border border-black">
         <button
           onClick={(e) => {
             e.preventDefault();
