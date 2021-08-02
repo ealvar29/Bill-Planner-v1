@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { supabase } from "../lib/initSupabase";
 
 export default function Bill({ bill, onDelete }) {
   const [isCompleted, setIsCompleted] = useState(bill.is_complete);
@@ -22,6 +23,7 @@ export default function Bill({ bill, onDelete }) {
   return (
     <tr>
       <td>{bill.billName}</td>
+      <td>{bill.bill_type}</td>
       <td>{bill.cost}</td>
       <td> {bill.due_date}</td>
       <td>
@@ -39,7 +41,6 @@ export default function Bill({ bill, onDelete }) {
             e.preventDefault();
             e.stopPropagation();
             onDelete();
-            toggle();
           }}
           className="w-4 h-4 ml-2 border-2 rounded hover:border-black"
         >

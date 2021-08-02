@@ -3,6 +3,7 @@ import { supabase } from "../lib/initSupabase";
 import Bill from "./Bill";
 import Alert from "./Alert";
 import Form from "./Form";
+
 export default function BillList({ user }) {
   const [bills, setBills] = useState([]);
   const [newBillName, setNewBillName] = useState("");
@@ -37,10 +38,11 @@ export default function BillList({ user }) {
       <Form />
       {!!errorText && <Alert text={errorText} />}
       <div className="overflow-hidden bg-white rounded-md shadow">
-        <table class="table-fixed">
+        <table class="table-fixed border-separate">
           <thead>
             <tr>
               <th>Bill Name</th>
+              <th>Bill Type</th>
               <th>Cost</th>
               <th>Due Date</th>
               <th>Paid for the month?</th>

@@ -36,6 +36,7 @@ export default function Form() {
         billName: newBillName,
         cost: cost,
         due_date: dueDate,
+        bill_type: selectedType.name,
         user_id: supabase.auth.user().id,
       })
       .single()
