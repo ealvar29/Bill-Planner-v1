@@ -35,31 +35,6 @@ export default function BillList({ user }) {
     <div className="w-full">
       <h1 className="mb-12 text-center">Bill Planner v1</h1>
       <Form />
-      {/* <div className="flex gap-2 my-2">
-        <input
-          className="w-full p-2 rounded"
-          type="text"
-          placeholder="Add Monthly Bill"
-          value={newBillName || ""}
-          onChange={(e) => {
-            setError("");
-            setNewBillName(e.target.value);
-          }}
-        />
-        <input
-          className="w-full p-2 rounded"
-          type="text"
-          placeholder="Add Amount"
-          value={cost || 0}
-          onChange={(e) => {
-            setError("");
-            setCost(e.target.value);
-          }}
-        />
-        <button className="btn-black" onClick={onSubmit}>
-          Add
-        </button>
-      </div> */}
       {!!errorText && <Alert text={errorText} />}
       <div className="overflow-hidden bg-white rounded-md shadow">
         <ul>
