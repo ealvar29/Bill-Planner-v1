@@ -37,15 +37,26 @@ export default function BillList({ user }) {
       <Form />
       {!!errorText && <Alert text={errorText} />}
       <div className="overflow-hidden bg-white rounded-md shadow">
-        <ul>
-          {bills.map((bill) => (
-            <Bill
-              key={bill.id}
-              bill={bill}
-              onDelete={() => deleteBill(bill.id)}
-            />
-          ))}
-        </ul>
+        <table class="table-fixed">
+          <thead>
+            <tr>
+              <th>Bill Name</th>
+              <th>Cost</th>
+              <th>Due Date</th>
+              <th>Paid for the month?</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {bills.map((bill) => (
+              <Bill
+                key={bill.id}
+                bill={bill}
+                onDelete={() => deleteBill(bill.id)}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -20,42 +20,26 @@ export default function Bill({ bill, onDelete }) {
   };
   console.log(bill);
   return (
-    <li
-      onClick={(e) => {
-        e.preventDefault();
-        toggle();
-      }}
-      className="block w-full transition duration-150 ease-in-out cursor-pointer hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
-    >
-      <div className="flex items-center px-4 py-4 sm:px-6">
-        <div className="flex items-center flex-1 min-w-0">
-          <div className="text-sm font-medium leading-5 truncate">
-            {bill.billName}
-          </div>
-        </div>
-        <div className="flex items-center flex-1 min-w-0">
-          <div className="text-sm font-medium leading-5 truncate">
-            {bill.cost}
-          </div>
-        </div>
-        <div className="flex items-center flex-1 min-w-0">
-          <div className="text-sm font-medium leading-5 truncate">
-            {bill.due_date}
-          </div>
-        </div>
-        <div>
-          <input
-            className="cursor-pointer"
-            onChange={(e) => toggle()}
-            type="checkbox"
-            checked={isCompleted ? true : ""}
-          />
-        </div>
+    <tr>
+      <td>{bill.billName}</td>
+      <td>{bill.cost}</td>
+      <td> {bill.due_date}</td>
+      <td>
+        {" "}
+        <input
+          className="cursor-pointer"
+          onChange={(e) => toggle()}
+          type="checkbox"
+          checked={isCompleted ? true : ""}
+        />
+      </td>
+      <td>
         <button
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             onDelete();
+            toggle();
           }}
           className="w-4 h-4 ml-2 border-2 rounded hover:border-black"
         >
@@ -71,7 +55,7 @@ export default function Bill({ bill, onDelete }) {
             />
           </svg>
         </button>
-      </div>
-    </li>
+      </td>
+    </tr>
   );
 }
