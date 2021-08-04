@@ -49,13 +49,13 @@ export default function Form() {
   };
   return (
     <div className="w-full bg-grey-500">
-      <div className="container py-8 mx-auto">
+      <div className="py-8 mx-auto">
         <div className="mx-auto bg-white rounded shadow w-96">
           <div className="px-8 py-4 mx-16 text-xl font-bold text-center text-black border-b border-grey-500">
             Enter Bill
           </div>
-          <form name="student_application" id="student_application" action="">
-            <div classNameName="py-4 px-8">
+          <form>
+            <div className="px-8 py-4">
               <div className="mb-4">
                 <Input
                   className="w-full px-3 py-3 font-bold rounded text-grey-darker"
@@ -71,7 +71,6 @@ export default function Form() {
                 <InputNumber
                   className="w-full px-3 py-5 font-bold border rounded text-grey-darker"
                   label="Input Amount"
-                  min={0}
                   max={1000000}
                   value={cost || 0}
                   onChange={(e) => {

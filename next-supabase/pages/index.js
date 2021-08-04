@@ -1,12 +1,12 @@
 import { supabase } from "../lib/initSupabase";
 import { Auth } from "@supabase/ui";
-import TodoList from "../components/BillList";
+import BillList from "../components/BillList";
 
 export default function IndexPage() {
   const { user } = Auth.useUser();
 
   return (
-    <div className="w-full h-full shadow-2xl bg-gradient-to-br from-green-400 to-blue-400">
+    <div className="w-full shadow-2xl bg-gradient-to-br from-green-400 to-blue-400">
       {!user ? (
         <div className="grid items-center justify-center w-full h-full p-4">
           <Auth
@@ -22,7 +22,7 @@ export default function IndexPage() {
           className="flex flex-col items-center justify-center w-full h-full p-4"
           style={{ minWidth: 250, maxWidth: 600, margin: "auto" }}
         >
-          <TodoList user={supabase.auth.user()} />
+          <BillList user={supabase.auth.user()} />
           <button
             className="w-full mt-12 btn-black"
             onClick={async () => {

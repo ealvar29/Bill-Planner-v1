@@ -6,9 +6,7 @@ import Form from "./Form";
 
 export default function BillList({ user }) {
   const [bills, setBills] = useState([]);
-  const [newBillName, setNewBillName] = useState("");
   const [errorText, setError] = useState("");
-  const [cost, setCost] = useState("0");
 
   useEffect(() => {
     fetchBills();
@@ -38,7 +36,7 @@ export default function BillList({ user }) {
       <Form />
       {!!errorText && <Alert text={errorText} />}
       <div className="overflow-hidden bg-white rounded-md shadow">
-        <table class="table-fixed border-collapse">
+        <table className="border-collapse table-auto">
           <thead>
             <tr className="">
               <th className="w-1/4 border border-black rounded-md">
@@ -49,8 +47,8 @@ export default function BillList({ user }) {
               </th>
               <th className="w-1/4 border border-black rounded-md">Cost</th>
               <th className="w-1/4 border border-black rounded-md">Due Date</th>
-              <th className="w-1/4 border border-black rounded-md">
-                Paid for the month?
+              <th className="w-1/2 p-3 border border-black rounded-md">
+                Paid?
               </th>
               <th className="w-1/4 border border-black rounded-md">Delete</th>
             </tr>
@@ -61,6 +59,7 @@ export default function BillList({ user }) {
                 key={bill.id}
                 bill={bill}
                 onDelete={() => deleteBill(bill.id)}
+                onChange={() => fetchBills()}
               />
             ))}
           </tbody>

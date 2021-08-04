@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { supabase } from "../lib/initSupabase";
+import moment from "../node_modules/moment";
 
 export default function Bill({ bill, onDelete }) {
   const [isCompleted, setIsCompleted] = useState(bill.is_complete);
-
   const toggle = async () => {
     try {
       const { data, error } = await supabase
@@ -31,7 +31,7 @@ export default function Bill({ bill, onDelete }) {
       <td className="w-1/4 p-2 text-center border border-black">{bill.cost}</td>
       <td className="w-1/4 p-2 text-center border border-black">
         {" "}
-        {bill.due_date}
+        {moment(bill.due_date).format("MMMM Do YYYY")}
       </td>
       <td className="w-1/4 p-2 text-center border border-black">
         {" "}
@@ -46,7 +46,6 @@ export default function Bill({ bill, onDelete }) {
         <button
           onClick={(e) => {
             e.preventDefault();
-            e.stopPropagation();
             onDelete();
           }}
           className="w-4 h-4 ml-2 border-2 rounded hover:border-black"
